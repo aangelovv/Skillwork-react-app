@@ -1,4 +1,4 @@
-import useInput from "../hooks/use-input";
+import useInput from "../../hooks/use-input";
 import styles from "./CreateProject.module.css";
 
 /**
@@ -209,7 +209,7 @@ const CreateProject = (props) => {
           <input
             type="text"
             id="link"
-            placeholder="http//:"
+            placeholder="https://figma.com"
             onChange={linkChangedHandler}
             onBlur={linkBlurHandler}
             value={enteredLink}

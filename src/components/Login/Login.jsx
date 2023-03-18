@@ -1,5 +1,11 @@
-import useInput from "../hooks/use-input";
+import useInput from "../../hooks/use-input";
 import styles from "./Login.module.css";
+
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+
+import { AuthContext } from "../../context/AuthContext";
+import * as authService from "../../services/authService";
 
 /**
  * Job form - component for rendering all form input fields
@@ -7,13 +13,16 @@ import styles from "./Login.module.css";
  * @returns {JSX}
  */
 const Login = (props) => {
+  // const { userLogin } = useContext(AuthContext);
+  const navigate = useNavigate();
+
   const {
-    value: enteredName,
-    isValid: enteredNameIsValid,
-    hasError: nameInputHasError,
-    valueChangeHandler: nameChangedHandler,
-    inputBlurHandler: nameBlurHandler,
-    reset: resetNameInput,
+    value: enteredPassword,
+    isValid: enteredPasswordIsValid,
+    hasError: passwordInputHasError,
+    valueChangeHandler: passwordChangedHandler,
+    inputBlurHandler: passwordBlurHandler,
+    reset: resetPasswordInput,
   } = useInput((value) => value.trim() !== "");
 
   const {
@@ -29,7 +38,7 @@ const Login = (props) => {
 
   let formIsValid = false;
 
-  if (enteredNameIsValid && enteredEmailIsValid) {
+  if (enteredPasswordIsValid && enteredEmailIsValid) {
     formIsValid = true;
   }
 
@@ -40,18 +49,21 @@ const Login = (props) => {
   const formSubmissionHandler = (event) => {
     event.preventDefault();
 
-    const data = {
-      name: enteredName,
-      email: enteredEmail,
-    };
+    // authService
+    //   .login(enteredEmail, enteredPassword)
+    //   .then((authData) => {
+    //     userLogin(authData);
+    //     navigate("/");
+    //   })
+    //   .catch(() => {
+    //     navigate("/404");
+    //   });
 
-    props.onAddData(data);
-
-    resetNameInput();
+    resetPasswordInput();
     resetEmailInput();
   };
 
-  const nameInputClasses = nameInputHasError
+  const passwordInputClasses = passwordInputHasError
     ? `${styles.form} ${styles.invalid}`
     : styles.form;
 
@@ -62,20 +74,6 @@ const Login = (props) => {
   return (
     <div className={styles.hero}>
       <form onSubmit={formSubmissionHandler}>
-        <div className={nameInputClasses}>
-          <label htmlFor="name">Your Name</label>
-          <input
-            type="text"
-            id="name"
-            placeholder="John Smith"
-            onChange={nameChangedHandler}
-            onBlur={nameBlurHandler}
-            value={enteredName}
-          />
-          {nameInputHasError && (
-            <p className={styles["error-text"]}>Enter your name.</p>
-          )}
-        </div>
         <div className={emailInputClasses}>
           <label htmlFor="email">Your E-Mail</label>
           <input
@@ -88,6 +86,20 @@ const Login = (props) => {
           />
           {emailInputHasError && (
             <p className={styles["error-text"]}>Enter a valid e-mail.</p>
+          )}
+        </div>
+        <div className={passwordInputClasses}>
+          <label htmlFor="password">Your Password</label>
+          <input
+            type="password"
+            id="password"
+            placeholder="*************"
+            onChange={passwordChangedHandler}
+            onBlur={passwordBlurHandler}
+            value={enteredPassword}
+          />
+          {passwordInputHasError && (
+            <p className={styles["error-text"]}>Enter your password.</p>
           )}
         </div>
         <div className="form-actions">
