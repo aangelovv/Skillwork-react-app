@@ -1,12 +1,12 @@
 import useInput from "../hooks/use-input";
-import styles from "./Register.module.css";
+import styles from "./CreateProject.module.css";
 
 /**
  * Job form - component for rendering all form input fields
  * @param props - onAddData
  * @returns {JSX}
  */
-const Register = (props) => {
+const CreateProject = (props) => {
   const {
     value: enteredName,
     isValid: enteredNameIsValid,
@@ -28,26 +28,19 @@ const Register = (props) => {
   );
 
   const {
-    value: enteredGender,
-    isValid: radioInputIsValid,
-    valueChangeHandler: radioChangeHanlder,
+    value: enteredFrondendTech,
+    isValid: feTechInputIsValid,
+    hasError: feTechInputHasError,
+    valueChangeHandler: feTechChangeHandler,
+    inputBlurHandler: feTechBlurHandler,
   } = useInput((value) => value !== "");
 
   const {
-    value: enteredExp,
-    isValid: expInputIsValid,
-    hasError: expInputHasError,
-    valueChangeHandler: expChangeHandler,
-    inputBlurHandler: expInputBlurHandler,
-    reset: resetExpInput,
-  } = useInput((value) => value.trim() !== "" && value < 101.5 && value > 0);
-
-  const {
-    value: enteredTech,
-    isValid: techInputIsValid,
-    hasError: techInputHasError,
-    valueChangeHandler: techChangeHandler,
-    inputBlurHandler: techBlurHandler,
+    value: enteredBackendTech,
+    isValid: beTechInputIsValid,
+    hasError: beTechInputHasError,
+    valueChangeHandler: beTechChangeHandler,
+    inputBlurHandler: beTechBlurHandler,
   } = useInput((value) => value !== "");
 
   const {
@@ -58,6 +51,15 @@ const Register = (props) => {
     inputBlurHandler: fileBlurHandler,
     reset: resetFileInput,
   } = useInput((value) => value !== "");
+
+  const {
+    value: enteredLink,
+    isValid: enteredLinkIsValid,
+    hasError: linkInputHasError,
+    valueChangeHandler: linkChangedHandler,
+    inputBlurHandler: linkBlurHandler,
+    reset: resetLinkInput,
+  } = useInput((value) => value.trim() !== "");
 
   const {
     value: enteredDescription,
@@ -73,10 +75,9 @@ const Register = (props) => {
   if (
     enteredNameIsValid &&
     enteredEmailIsValid &&
-    radioInputIsValid &&
-    expInputIsValid &&
-    techInputIsValid &&
-    fileInputIsValid &&
+    feTechInputIsValid &&
+    beTechInputIsValid &&
+    enteredLinkIsValid &&
     descriptionInputIsValid
   ) {
     formIsValid = true;
@@ -92,10 +93,9 @@ const Register = (props) => {
     const data = {
       name: enteredName,
       email: enteredEmail,
-      gender: enteredGender,
-      exp: enteredExp,
-      tech: enteredTech,
-      photo: enteredPicture,
+      frontendTech: enteredFrondendTech,
+      backendTech: enteredBackendTech,
+      link: enteredLink,
       description: enteredDescription,
     };
 
@@ -103,8 +103,7 @@ const Register = (props) => {
 
     resetNameInput();
     resetEmailInput();
-    resetExpInput();
-    resetFileInput();
+    resetLinkInput();
     resetDescriptionInput();
   };
 
@@ -116,16 +115,16 @@ const Register = (props) => {
     ? `${styles.form} ${styles.invalid}`
     : styles.form;
 
-  const expInputClasses = expInputHasError
+  const feTechInputClasses = feTechInputHasError
     ? `${styles.form} ${styles.invalid}`
     : styles.form;
 
-  const techInputClasses = techInputHasError
+  const beTechInputClasses = beTechInputHasError
     ? `${styles.form} ${styles.invalid}`
     : styles.form;
 
   // look from this example and implemet it for the others lazy boy !!!
-  const fileInputClasses = fileInputHasError
+  const linkInputClasses = linkInputHasError
     ? `${styles.form} ${styles.invalid}`
     : styles.form;
 
@@ -137,25 +136,25 @@ const Register = (props) => {
     <div className={styles.hero}>
       <form onSubmit={formSubmissionHandler}>
         <div className={nameInputClasses}>
-          <label htmlFor="name">Your Name</label>
+          <label htmlFor="name">Project name</label>
           <input
             type="text"
             id="name"
-            placeholder="John Smith"
+            placeholder="Project name"
             onChange={nameChangedHandler}
             onBlur={nameBlurHandler}
             value={enteredName}
           />
           {nameInputHasError && (
-            <p className={styles["error-text"]}>Enter your name.</p>
+            <p className={styles["error-text"]}>Enter project name.</p>
           )}
         </div>
         <div className={emailInputClasses}>
-          <label htmlFor="email">Your E-Mail</label>
+          <label htmlFor="email">Company e-mail</label>
           <input
             type="email"
             id="email"
-            placeholder="johnSmith@gmail.com"
+            placeholder="someGoodCompany@gmail.com"
             onChange={emailChangeHandler}
             onBlur={emailBlurHandler}
             value={enteredEmail}
@@ -164,101 +163,68 @@ const Register = (props) => {
             <p className={styles["error-text"]}>Enter a valid e-mail.</p>
           )}
         </div>
-
-        <div className={styles["radio-button"]}>
-          <p>Gender</p>
-          <div className={styles.wraper}>
-            <div>
-              <input
-                type="radio"
-                name="gender"
-                id="male"
-                value="male"
-                onChange={radioChangeHanlder}
-              />
-              <label htmlFor="male">male</label>
-            </div>
-            <div>
-              <input
-                type="radio"
-                name="gender"
-                id="female"
-                value="female"
-                onChange={radioChangeHanlder}
-              />
-              <label htmlFor="female">female</label>
-            </div>
-            <div>
-              <input
-                type="radio"
-                name="gender"
-                id="programmer"
-                value="programmer"
-                onChange={radioChangeHanlder}
-              />
-              <label htmlFor="programmer">programmer</label>
-            </div>
-          </div>
-        </div>
-        <div className={expInputClasses}>
-          <label htmlFor="year">Years of experience</label>
-          <input
-            type="number"
-            id="year"
-            name="year"
-            placeholder="2"
-            min="0"
-            max="101"
-            step="0.5"
-            onChange={expChangeHandler}
-            onBlur={expInputBlurHandler}
-            value={enteredExp}
-          />
-          {expInputHasError && (
-            <p className={styles["error-text"]}>Enter years of experience.</p>
-          )}
-        </div>
-        <div className={techInputClasses}>
-          <label htmlFor="tech-stack">Your Tech stack</label>
+        <div className={feTechInputClasses}>
+          <label htmlFor="tech-stack">Select Frontend technology</label>
           <select
             id="tech-stack"
             name="tech-stack"
-            onChange={techChangeHandler}
-            onBlur={techBlurHandler}
+            onChange={feTechChangeHandler}
+            onBlur={feTechBlurHandler}
           >
             <option value="blank"></option>
-            <option value="manager">Project manager</option>
-            <option value="Front-end">Front-end</option>
-            <option value="Back-end">Back-end</option>
-            <option value="Full-stack">Full-stack</option>
-            <option value="QA">QA</option>
-            <option value="DevOps">DevOps</option>
+            <option value="JavaScript">JavaScript</option>
+            <option value="React">React</option>
+            <option value="Angular">Angular</option>
+            <option value="Vue">Vue</option>
+            <option value="discuss">Discuss it with our team</option>
           </select>
-          {techInputHasError && (
-            <p className={styles["error-text"]}>Select a Tech stack type.</p>
+          {feTechInputHasError && (
+            <p className={styles["error-text"]}>
+              Select a Frontend technology.
+            </p>
           )}
         </div>
-        <div className={fileInputClasses}>
-          <label htmlFor="file">Your photo</label>
+        {/* komentar */}
+        <div className={beTechInputClasses}>
+          <label htmlFor="tech-stack">Select a Backend technology.</label>
+          <select
+            id="tech-stack"
+            name="tech-stack"
+            onChange={beTechChangeHandler}
+            onBlur={beTechBlurHandler}
+          >
+            <option value="blank"></option>
+            <option value="PHP">PHP</option>
+            <option value="Java">Java</option>
+            <option value="Python">Python</option>
+            <option value="discuss">Discuss it with our team</option>
+          </select>
+          {beTechInputHasError && (
+            <p className={styles["error-text"]}>Select a Backend technology.</p>
+          )}
+        </div>
+
+        <div className={linkInputClasses}>
+          <label htmlFor="name">Add link towards project design</label>
           <input
-            type="file"
-            id="file"
-            name="file"
-            onChange={fileChangeHandler}
-            onBlur={fileBlurHandler}
-            value={enteredPicture}
+            type="text"
+            id="link"
+            placeholder="http//:"
+            onChange={linkChangedHandler}
+            onBlur={linkBlurHandler}
+            value={enteredLink}
           />
-          {fileInputHasError && (
-            <p className={styles["error-text"]}>Choose a file.</p>
+          {linkInputHasError && (
+            <p className={styles["error-text"]}>Enter link.</p>
           )}
         </div>
 
         <div className={descriptionTextareaClasses}>
-          <label htmlFor="description">Tell us more about yourself?</label>
+          <label htmlFor="description">Tell us more about the project?</label>
           <textarea
             id="description"
             name="description"
-            placeholder="I'm a..."
+            placeholder="It is a react app project, about other projects suggested to Skillwork "
             rows="6"
             onChange={descriptionChangeHandler}
             onBlur={descriptionBlurHandler}
@@ -277,4 +243,4 @@ const Register = (props) => {
   );
 };
 
-export default Register;
+export default CreateProject;

@@ -16,36 +16,38 @@ const Header = () => {
           </Link>
         </li>
         {/* <li className={styles.}>Hello, {user.username}</li>  */}
-        <li className={styles.links}>
-          <Link to="/catalog" className={styles.link}>
-            All projects
-          </Link>
-        </li>
-        <>
+        <div className={styles["links-wrapper"]}>
           <li className={styles.links}>
-            <Link to="/login" className={styles.link}>
-              Login
+            <Link to="/catalog" className={styles.link}>
+              All projects
             </Link>
           </li>
-          <li className={styles.links}>
-            <Link to="/register" className={styles.link}>
-              Register
-            </Link>
-          </li>
-        </>
+          <>
+            <li className={styles.links}>
+              <Link to="/login" className={styles.link}>
+                Login
+              </Link>
+            </li>
+            <li className={styles.links}>
+              <Link to="/register" className={styles.link}>
+                Register
+              </Link>
+            </li>
+          </>
 
-        <>
-          <li className={styles.links}>
-            <Link to="/create" className={styles.link}>
-              Create Project
-            </Link>
-          </li>
-          <li className={styles.links}>
-            <Link to="/logout" className={styles.link}>
-              Logout
-            </Link>
-          </li>
-        </>
+          <>
+            <li className={styles.links}>
+              <Link to="/create" className={styles.link}>
+                Create Project
+              </Link>
+            </li>
+            <li className={styles.links}>
+              <Link to="/logout" className={styles.link}>
+                Logout
+              </Link>
+            </li>
+          </>
+        </div>
       </nav>
     </header>
   );

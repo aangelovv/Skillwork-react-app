@@ -1,10 +1,15 @@
 .nav {
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: space-between;
   margin-bottom: 0;
   margin-top: 0;
   background-color: #cea581;
+}
+
+.links-wrapper {
+  display: flex;
+  flex-direction: row;
 }
 
 .links {
