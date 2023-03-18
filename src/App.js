@@ -1,8 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from "./components/Header/Header";
+import Home from "./components/Home/Home";
+import Login from "./components/Login/Login";
+import Logout from "./components/Logout/Logout";
+import Catalog from "./components/Catalog/Catalog";
+import Register from "./components/Register/Register";
+import "./App.css";
 
-function App() {
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+function NotFound() {
+  return <h1>404 Not Found</h1>;
+}
+
+const App = () => {
   return (
+    <Router>
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
@@ -19,7 +30,18 @@ function App() {
         </a>
       </header>
     </div>
+      <Header />
+
+      <Routes>
+        <Route path="*" element={<NotFound />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/logout" element={<Logout />} />
+        <Route path="/catalog" element={<Catalog />} />
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;
