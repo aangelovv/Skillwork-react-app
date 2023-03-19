@@ -18,21 +18,21 @@ function NotFound() {
 
 const App = () => {
   return (
-    // <AuthProvider>
-    <Router>
-      <Header />
+    <AuthProvider>
+      <Router>
+        <Header />
 
-      <Routes>
-        <Route path="*" element={<NotFound />} />
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/logout" element={<Logout />} />
-        <Route path="/catalog" element={<Catalog />} />
-        <Route path="/create" element={<CreateProject />} />
-      </Routes>
-    </Router>
-    // </AuthProvider>
+        <Routes>
+          <Route path="*" element={<NotFound />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/logout" element={<Logout />} />
+          <Route path="/catalog" element={<Catalog />} />
+          <Route path="/create" element={<CreateProject />} />
+        </Routes>
+      </Router>
+    </AuthProvider>
   );
 };
 

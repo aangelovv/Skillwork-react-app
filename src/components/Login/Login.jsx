@@ -13,7 +13,7 @@ import * as authService from "../../services/authService";
  * @returns {JSX}
  */
 const Login = (props) => {
-  // const { userLogin } = useContext(AuthContext);
+  const { userLogin } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const {
@@ -49,15 +49,15 @@ const Login = (props) => {
   const formSubmissionHandler = (event) => {
     event.preventDefault();
 
-    // authService
-    //   .login(enteredEmail, enteredPassword)
-    //   .then((authData) => {
-    //     userLogin(authData);
-    //     navigate("/");
-    //   })
-    //   .catch(() => {
-    //     navigate("/404");
-    //   });
+    authService
+      .login(enteredEmail, enteredPassword)
+      .then((authData) => {
+        userLogin(authData);
+        navigate("/");
+      })
+      .catch(() => {
+        navigate("/404");
+      });
 
     resetPasswordInput();
     resetEmailInput();
