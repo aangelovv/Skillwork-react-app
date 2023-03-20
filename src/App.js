@@ -11,10 +11,17 @@ import { AuthProvider } from "./context/AuthContext";
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import CreateProject from "./components/CreateProject/CreateProject";
+import Parse from "parse/dist/parse.min.js";
 
 function NotFound() {
   return <h1>404 Not Found</h1>;
 }
+
+const PARSE_APPLICATION_ID = "l6kPqgl0vczfSwTUi6wmlW0K7yrnHP6LupC5vSJT";
+const PARSE_HOST_URL = "https://parseapi.back4app.com/";
+const PARSE_JAVASCRIPT_KEY = "zzZWt7MQOPzFb7syzRnkbpV80bcoFr8TyY4ekzlo";
+Parse.initialize(PARSE_APPLICATION_ID, PARSE_JAVASCRIPT_KEY);
+Parse.serverURL = PARSE_HOST_URL;
 
 const App = () => {
   return (

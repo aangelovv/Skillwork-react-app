@@ -1,23 +1,108 @@
-import * as request from "./requester";
+import Parse from "parse/dist/parse.min.js";
 
-const baseUrl = "http://localhost:3030/users";
+const PARSE_APPLICATION_ID = "l6kPqgl0vczfSwTUi6wmlW0K7yrnHP6LupC5vSJT";
+const PARSE_HOST_URL = "https://parseapi.back4app.com/users";
+const PARSE_JAVASCRIPT_KEY = "zzZWt7MQOPzFb7syzRnkbpV80bcoFr8TyY4ekzlo";
+Parse.initialize(PARSE_APPLICATION_ID, PARSE_JAVASCRIPT_KEY);
+Parse.serverURL = PARSE_HOST_URL;
 
-export const login = (email, password) =>
-  request.post(`${baseUrl}/login`, { email, password });
+export async function register({
+  username,
+  email,
+  gender,
+  exp,
+  tech,
+  photo,
+  password,
+  repeatPassword,
+}) {
+  const user = new Parse.User();
 
-export const logout = async (accessToken) => {
+  user.set({
+    username,
+    email,
+    gender,
+    exp,
+    tech,
+    photo,
+    password,
+    repeatPassword,
+  });
+
+  console.log({ username, email, gender, exp, tech, photo });
   try {
-    const response = await fetch(`${baseUrl}/logout`, {
-      headers: {
-        "X-Authorization": accessToken,
-      },
-    });
+    await user.signUp();
+    console.log(user);
 
-    return response;
+    const newUser = { ...user.attributes, id: user.id };
+    console.log(newUser);
+
+    return newUser;
   } catch (error) {
-    console.log(error);
+    if (error) {
+      console.log(error.message);
+      throw new Error(error.message);
+    }
   }
-};
+}
 
-export const register = (email, password) =>
-  request.post(`${baseUrl}/register`, { email, password });
+export async function login(username, password) {
+  try {
+    const userData = await Parse.User.logIn(username, password);
+
+    const user = { ...userData.attributes, id: userData.id };
+
+    return user;
+  } catch (error) {
+    if (error) {
+      throw new Error(error.message);
+    }
+  }
+}
+
+export async function logout() {
+  try {
+    await Parse.User.logOut();
+    // To verify that current user is now empty, currentAsync can be used
+    const currentUser = await Parse.User.current();
+    if (currentUser === null) {
+      console.log("Success! No user is logged in anymore!");
+    }
+    // Update state variable holding current user
+    getCurrentUser();
+    return true;
+  } catch (error) {
+    throw new Error(error);
+    // alert(`Error! ${error.message}`);
+    // return false;
+  }
+}
+
+export async function getCurrentUser() {
+  const currentUser = await Parse.User.current();
+  return currentUser;
+}
+
+// import * as request from "./requester";
+
+// const baseUrl = "http://localhost:3030/users";
+
+// export const login = (email, password) =>
+//   request.post(`${baseUrl}/login`, { email, password });
+
+// export const logout = async (accessToken) => {
+//   try {
+//     const response = await fetch(`${baseUrl}/logout`, {
+//       headers: {
+//         "X-Authorization": accessToken,
+//       },
+//     });
+
+//     return response;
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
+
+// export const register = (email, password) =>
+//   request.post(`${baseUrl}/register`, { email, password });

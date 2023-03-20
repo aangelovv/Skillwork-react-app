@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import styles from "./Header.module.css";
 import logo from "../../assets/logo.png";
-// import { useAuthContext } from '../../contexts/AuthContext';
+import { useAuthContext } from "../../context/AuthContext";
 
 const Header = () => {
-  // const { user } = useAuthContext();
+  const { user } = useAuthContext();
 
   return (
     <header className={styles.header}>
@@ -22,31 +22,33 @@ const Header = () => {
               All projects
             </Link>
           </li>
-          <>
-            <li className={styles.links}>
-              <Link to="/login" className={styles.link}>
-                Login
-              </Link>
-            </li>
-            <li className={styles.links}>
-              <Link to="/register" className={styles.link}>
-                Register
-              </Link>
-            </li>
-          </>
-
-          <>
-            <li className={styles.links}>
-              <Link to="/create" className={styles.link}>
-                Create Project
-              </Link>
-            </li>
-            <li className={styles.links}>
-              <Link to="/logout" className={styles.link}>
-                Logout
-              </Link>
-            </li>
-          </>
+          {!user.email ? (
+            <div>
+              <li className={styles.links}>
+                <Link to="/login" className={styles.link}>
+                  Login
+                </Link>
+              </li>
+              <li className={styles.links}>
+                <Link to="/register" className={styles.link}>
+                  Register
+                </Link>
+              </li>
+            </div>
+          ) : (
+            <div>
+              <li className={styles.links}>
+                <Link to="/create" className={styles.link}>
+                  Create Project
+                </Link>
+              </li>
+              <li className={styles.links}>
+                <Link to="/logout" className={styles.link}>
+                  Logout
+                </Link>
+              </li>
+            </div>
+          )}
         </div>
       </nav>
     </header>

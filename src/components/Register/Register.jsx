@@ -1,12 +1,20 @@
 import useInput from "../../hooks/use-input";
 import styles from "./Register.module.css";
 
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+
+import { AuthContext } from "../../context/AuthContext";
+import * as authService from "../../services/authService";
+
 /**
  * Job form - component for rendering all form input fields
- * @param props - onAddData
  * @returns {JSX}
  */
 const Register = (props) => {
+  const { userLogin } = useContext(AuthContext);
+  const navigate = useNavigate();
+
   const {
     value: enteredName,
     isValid: enteredNameIsValid,
@@ -60,13 +68,22 @@ const Register = (props) => {
   } = useInput((value) => value !== "");
 
   const {
-    value: enteredDescription,
-    isValid: descriptionInputIsValid,
-    hasError: descriptionInputHasError,
-    valueChangeHandler: descriptionChangeHandler,
-    inputBlurHandler: descriptionBlurHandler,
-    reset: resetDescriptionInput,
-  } = useInput((value) => value !== "");
+    value: enteredPassword,
+    isValid: enteredPasswordIsValid,
+    hasError: passwordInputHasError,
+    valueChangeHandler: passwordChangedHandler,
+    inputBlurHandler: passwordBlurHandler,
+    reset: resetPasswordInput,
+  } = useInput((value) => value.trim() !== "");
+
+  const {
+    value: repeatEnteredPassword,
+    isValid: repeatEnteredPasswordIsValid,
+    hasError: repeatPasswordInputHasError,
+    valueChangeHandler: repeatPasswordChangedHandler,
+    inputBlurHandler: repeatPasswordBlurHandler,
+    reset: resetRepeatPasswordInput,
+  } = useInput((value) => value.trim() !== "");
 
   let formIsValid = false;
 
@@ -77,7 +94,8 @@ const Register = (props) => {
     expInputIsValid &&
     techInputIsValid &&
     fileInputIsValid &&
-    descriptionInputIsValid
+    enteredPasswordIsValid &&
+    repeatEnteredPasswordIsValid
   ) {
     formIsValid = true;
   }
@@ -88,24 +106,40 @@ const Register = (props) => {
    */
   const formSubmissionHandler = (event) => {
     event.preventDefault();
+    console.log("stawa li neshto ? ");
 
     const data = {
-      name: enteredName,
+      username: enteredName,
       email: enteredEmail,
       gender: enteredGender,
       exp: enteredExp,
       tech: enteredTech,
       photo: enteredPicture,
-      description: enteredDescription,
+      password: enteredPassword,
+      repeatPassword: repeatEnteredPassword,
     };
 
-    props.onAddData(data);
+    if (enteredPassword !== repeatEnteredPassword) {
+      alert("Paswrods don't match");
+      return;
+    }
+
+    authService
+      .register(data)
+      .then((authData) => {
+        userLogin(authData);
+        navigate("/");
+      })
+      .catch(() => {
+        navigate("/404");
+      });
 
     resetNameInput();
     resetEmailInput();
     resetExpInput();
     resetFileInput();
-    resetDescriptionInput();
+    resetPasswordInput();
+    resetRepeatPasswordInput();
   };
 
   const nameInputClasses = nameInputHasError
@@ -129,7 +163,11 @@ const Register = (props) => {
     ? `${styles.form} ${styles.invalid}`
     : styles.form;
 
-  const descriptionTextareaClasses = descriptionInputHasError
+  const passwordInputClasses = passwordInputHasError
+    ? `${styles.form} ${styles.invalid} ${styles.last}`
+    : `${styles.form} ${styles.last}`;
+
+  const repeatPasswordInputClasses = repeatPasswordInputHasError
     ? `${styles.form} ${styles.invalid} ${styles.last}`
     : `${styles.form} ${styles.last}`;
 
@@ -252,23 +290,35 @@ const Register = (props) => {
             <p className={styles["error-text"]}>Choose a file.</p>
           )}
         </div>
-
-        <div className={descriptionTextareaClasses}>
-          <label htmlFor="description">Tell us more about yourself?</label>
-          <textarea
-            id="description"
-            name="description"
-            placeholder="I'm a..."
-            rows="6"
-            onChange={descriptionChangeHandler}
-            onBlur={descriptionBlurHandler}
-            value={enteredDescription}
+        <div className={passwordInputClasses}>
+          <label htmlFor="password">Your Password</label>
+          <input
+            type="password"
+            id="password"
+            placeholder="*************"
+            onChange={passwordChangedHandler}
+            onBlur={passwordBlurHandler}
+            value={enteredPassword}
           />
-          {descriptionInputHasError && (
-            <p className={styles["error-text"]}>Write a description.</p>
+          {passwordInputHasError && (
+            <p className={styles["error-text"]}>Enter your password.</p>
           )}
         </div>
 
+        <div className={repeatPasswordInputClasses}>
+          <label htmlFor="repeat-password">Repeat your Password</label>
+          <input
+            type="password"
+            id="repeat-password"
+            placeholder="*************"
+            onChange={repeatPasswordChangedHandler}
+            onBlur={repeatPasswordBlurHandler}
+            value={repeatEnteredPassword}
+          />
+          {repeatPasswordInputHasError && (
+            <p className={styles["error-text"]}>Enter your password.</p>
+          )}
+        </div>
         <div className="form-actions">
           <button disabled={!formIsValid}>Submit</button>
         </div>
