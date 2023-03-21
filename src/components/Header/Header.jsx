@@ -15,15 +15,15 @@ const Header = () => {
             <h1 className={styles.heading}>Skillwork</h1>
           </Link>
         </li>
-        {/* <li className={styles.}>Hello, {user.username}</li>  */}
         <div className={styles["links-wrapper"]}>
+          {user.email && <li className={styles.links}>Hello, {user.email}</li>}
           <li className={styles.links}>
             <Link to="/catalog" className={styles.link}>
               All projects
             </Link>
           </li>
           {!user.email ? (
-            <div>
+            <div className={styles["links-wrapper"]}>
               <li className={styles.links}>
                 <Link to="/login" className={styles.link}>
                   Login
@@ -36,7 +36,7 @@ const Header = () => {
               </li>
             </div>
           ) : (
-            <div>
+            <div className={styles["links-wrapper"]}>
               <li className={styles.links}>
                 <Link to="/create" className={styles.link}>
                   Create Project

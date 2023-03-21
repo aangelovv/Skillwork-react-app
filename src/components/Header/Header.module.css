@@ -4,7 +4,7 @@
   justify-content: space-between;
   margin-bottom: 0;
   margin-top: 0;
-  background-color: #cea581;
+  background-color: pink;
 }
 
 .links-wrapper {
@@ -22,8 +22,8 @@
   text-decoration: none;
   margin: 20px 0;
   padding: 10px 10px;
-  background-color: #704632;
-  border-radius: 10px;
+  background-color: #583270;
+  border-radius: 12px;
   color: white;
   font-weight: bold;
 }

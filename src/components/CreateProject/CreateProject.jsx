@@ -5,7 +5,7 @@ import { useAuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router";
 
 /**
- * Job form - component for rendering all form input fields
+ * Create project form - component for rendering all form input fields
  * @param props - onAddData
  * @returns {JSX}
  */
@@ -61,6 +61,15 @@ const CreateProject = (props) => {
   } = useInput((value) => value.trim() !== "");
 
   const {
+    value: enteredPicture,
+    isValid: fileInputIsValid,
+    hasError: fileInputHasError,
+    valueChangeHandler: fileChangeHandler,
+    inputBlurHandler: fileBlurHandler,
+    reset: resetFileInput,
+  } = useInput((value) => value !== "");
+
+  const {
     value: enteredDescription,
     isValid: descriptionInputIsValid,
     hasError: descriptionInputHasError,
@@ -77,6 +86,7 @@ const CreateProject = (props) => {
     feTechInputIsValid &&
     beTechInputIsValid &&
     enteredLinkIsValid &&
+    fileInputIsValid &&
     descriptionInputIsValid
   ) {
     formIsValid = true;
@@ -95,11 +105,12 @@ const CreateProject = (props) => {
       frontendTech: enteredFrondendTech,
       backendTech: enteredBackendTech,
       link: enteredLink,
+      picture: enteredPicture,
       description: enteredDescription,
     };
 
     try {
-      projectService.addFestival(data, ownerId).then((project) => {
+      projectService.addProject(data, ownerId).then((project) => {
         navigate("/");
       });
     } catch (err) {}
@@ -107,6 +118,7 @@ const CreateProject = (props) => {
     resetNameInput();
     resetEmailInput();
     resetLinkInput();
+    resetFileInput();
     resetDescriptionInput();
   };
 
@@ -128,6 +140,10 @@ const CreateProject = (props) => {
 
   // look from this example and implemet it for the others lazy boy !!!
   const linkInputClasses = linkInputHasError
+    ? `${styles.form} ${styles.invalid}`
+    : styles.form;
+
+  const fileInputClasses = fileInputHasError
     ? `${styles.form} ${styles.invalid}`
     : styles.form;
 
@@ -167,10 +183,10 @@ const CreateProject = (props) => {
           )}
         </div>
         <div className={feTechInputClasses}>
-          <label htmlFor="tech-stack">Select Frontend technology</label>
+          <label htmlFor="tech-stac-f">Select Frontend technology</label>
           <select
-            id="tech-stack"
-            name="tech-stack"
+            id="tech-stac-f"
+            name="tech-stac"
             onChange={feTechChangeHandler}
             onBlur={feTechBlurHandler}
           >
@@ -187,11 +203,11 @@ const CreateProject = (props) => {
             </p>
           )}
         </div>
-        {/* komentar */}
+
         <div className={beTechInputClasses}>
-          <label htmlFor="tech-stack">Select a Backend technology.</label>
+          <label htmlFor="tech-stack-b">Select a Backend technology.</label>
           <select
-            id="tech-stack"
+            id="tech-stack-b"
             name="tech-stack"
             onChange={beTechChangeHandler}
             onBlur={beTechBlurHandler}
@@ -208,7 +224,7 @@ const CreateProject = (props) => {
         </div>
 
         <div className={linkInputClasses}>
-          <label htmlFor="name">Add link towards project design</label>
+          <label htmlFor="link">Add link towards project design</label>
           <input
             type="text"
             id="link"
@@ -222,6 +238,22 @@ const CreateProject = (props) => {
           )}
         </div>
 
+        <div className={fileInputClasses}>
+          <label htmlFor="link-picture">
+            Add link towards project cover photo
+          </label>
+          <input
+            type="text"
+            id="link-picture"
+            placeholder="https://someCoolPicture.com"
+            onChange={fileChangeHandler}
+            onBlur={fileBlurHandler}
+            value={enteredPicture}
+          />
+          {fileInputHasError && (
+            <p className={styles["error-text"]}>Enter picture link.</p>
+          )}
+        </div>
         <div className={descriptionTextareaClasses}>
           <label htmlFor="description">Tell us more about the project?</label>
           <textarea

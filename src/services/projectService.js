@@ -8,12 +8,12 @@ Parse.serverURL = PARSE_HOST_URL;
 
 export async function getAll() {
   // create your Parse Query using the Person Class you've created
-  const query = new Parse.Query("projects");
+  const query = new Parse.Query("project");
   // run the query
-  const Festival = await query.find();
+  const Project = await query.find();
 
   //add id to the result
-  const result = Festival.map((x, id) => ({ ...x.attributes, id: x.id }));
+  const result = Project.map((x, id) => ({ ...x.attributes, id: x.id }));
 
   // const filtered = result.filter(x => x.location === 'Varna')
 
@@ -21,19 +21,19 @@ export async function getAll() {
 }
 
 export async function getLatest() {
-  const query = new Parse.Query("projects");
+  const query = new Parse.Query("project");
   query.limit(3);
   // run the query
-  const Festival = await query.find();
+  const Project = await query.find();
 
   //add id to the result
-  const result = Festival.map((x, id) => ({ ...x.attributes, id: x.id }));
+  const result = Project.map((x, id) => ({ ...x.attributes, id: x.id }));
 
   return result;
 }
 
 export async function getById(projectId) {
-  const query = new Parse.Query("projects");
+  const query = new Parse.Query("project");
   try {
     const Project = await query.get(projectId);
 
@@ -46,7 +46,7 @@ export async function getById(projectId) {
 }
 
 export async function getByOwner(ownerId) {
-  const query = new Parse.Query("projects");
+  const query = new Parse.Query("project");
 
   try {
     // run the query
@@ -62,7 +62,7 @@ export async function getByOwner(ownerId) {
   }
 }
 
-export async function addFestival(data, ownerId) {
+export async function addProject(data, ownerId) {
   const Project = Parse.Object.extend("project");
   const project = new Project();
 
@@ -72,7 +72,9 @@ export async function addFestival(data, ownerId) {
     frontendTech: data.frontendTech,
     backendTech: data.backendTech,
     link: data.link,
+    picture: data.picture,
     description: data.description,
+    ownerId: ownerId,
   });
 
   project.save().then(
