@@ -1,5 +1,8 @@
 import useInput from "../../hooks/use-input";
 import styles from "./CreateProject.module.css";
+import * as projectService from "../../services/projectService";
+import { useAuthContext } from "../../context/AuthContext";
+import { useNavigate } from "react-router";
 
 /**
  * Job form - component for rendering all form input fields
@@ -7,6 +10,11 @@ import styles from "./CreateProject.module.css";
  * @returns {JSX}
  */
 const CreateProject = (props) => {
+  const navigate = useNavigate();
+
+  const { user } = useAuthContext();
+  let ownerId = user.id;
+
   const {
     value: enteredName,
     isValid: enteredNameIsValid,
@@ -41,15 +49,6 @@ const CreateProject = (props) => {
     hasError: beTechInputHasError,
     valueChangeHandler: beTechChangeHandler,
     inputBlurHandler: beTechBlurHandler,
-  } = useInput((value) => value !== "");
-
-  const {
-    value: enteredPicture,
-    isValid: fileInputIsValid,
-    hasError: fileInputHasError,
-    valueChangeHandler: fileChangeHandler,
-    inputBlurHandler: fileBlurHandler,
-    reset: resetFileInput,
   } = useInput((value) => value !== "");
 
   const {
@@ -99,7 +98,11 @@ const CreateProject = (props) => {
       description: enteredDescription,
     };
 
-    props.onAddData(data);
+    try {
+      projectService.addFestival(data, ownerId).then((project) => {
+        navigate("/");
+      });
+    } catch (err) {}
 
     resetNameInput();
     resetEmailInput();
