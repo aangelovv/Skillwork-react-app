@@ -12,6 +12,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import CreateProject from "./components/CreateProject/CreateProject";
 import Parse from "parse/dist/parse.min.js";
+import Details from "./components/Details/Details";
 
 function NotFound() {
   return <h1>404 Not Found</h1>;
@@ -37,6 +38,7 @@ const App = () => {
           <Route path="/logout" element={<Logout />} />
           <Route path="/catalog" element={<Catalog />} />
           <Route path="/create" element={<CreateProject />} />
+          <Route path="/project/:projectId" element={<Details />} />
         </Routes>
       </Router>
     </AuthProvider>
