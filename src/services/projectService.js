@@ -100,3 +100,27 @@ export async function remove(projectId) {
     console.error("Error while retrieving ParseObject", error);
   }
 }
+
+export async function update(projectId, projectData) {
+  const query = new Parse.Query("project");
+  try {
+    // here you put the objectId that you want to update
+    const object = await query.get(projectId);
+    object.set("name", projectData.name);
+    object.set("email", projectData.imgUrlFest);
+    object.set("frontendTech", projectData.frontendTech);
+    object.set("backendTech", projectData.backendTech);
+    object.set("link", projectData.link);
+    object.set("picture", projectData.picture);
+    object.set("description", projectData.description);
+    try {
+      const response = await object.save();
+      let result = { ...response.attributes, id: response.id };
+      return result;
+    } catch (error) {
+      console.error("Error while updating project", error);
+    }
+  } catch (error) {
+    console.error("Error while retrieving object project", error);
+  }
+}
