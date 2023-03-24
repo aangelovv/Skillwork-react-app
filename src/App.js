@@ -5,6 +5,8 @@ import Login from "./components/Login/Login";
 import Logout from "./components/Logout/Logout";
 import Catalog from "./components/Catalog/Catalog";
 import Register from "./components/Register/Register";
+import Details from "./components/Details/Details";
+import Edit from "./components/Edit/Edit";
 import "./App.css";
 import { AuthProvider } from "./context/AuthContext";
 
@@ -12,7 +14,6 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import CreateProject from "./components/CreateProject/CreateProject";
 import Parse from "parse/dist/parse.min.js";
-import Details from "./components/Details/Details";
 
 function NotFound() {
   return <h1>404 Not Found</h1>;
@@ -40,7 +41,7 @@ const App = () => {
           <Route path="/catalog" element={<Catalog />} />
           <Route path="/create" element={<CreateProject />} />
           <Route path="/project/:projectId" element={<Details />} />
-          {/* <Route path="/edit/:projectId" element={<Edit />} /> */}
+          <Route path="/edit/:projectId" element={<Edit />} />
         </Routes>
       </Router>
     </AuthProvider>

@@ -1,126 +1,93 @@
 import useInput from "../../hooks/use-input";
-import styles from "./CreateProject.module.css";
+import styles from "./Edit.module.css";
+import { useNavigate, useParams } from "react-router";
+import { useState, useEffect } from "react";
 import * as projectService from "../../services/projectService";
-import { useAuthContext } from "../../context/AuthContext";
-import { useNavigate } from "react-router";
 
-/**
- * Create project form - component for rendering all form input fields
- * @param props - onAddData
- * @returns {JSX}
- */
-const CreateProject = (props) => {
+const Edit = () => {
   const navigate = useNavigate();
 
-  const { user } = useAuthContext();
-  let ownerId = user.id;
+  const params = useParams();
 
+  const [project, setProject] = useState([]);
+
+  useEffect(() => {
+    projectService
+      .getById(params.projectId)
+      .then((result) => setProject(result));
+  }, [params.projectId]);
+
+  //   .//.// //   .//.// //   .//.// //   .//.// //   .//.// //   .//.//
+
+  //   If you are reading this, i wanted to use defaultValue and set it to select input like this
+  //   deafultValue={project.frontendTech} so it detects the option and set its value, BUT IT DOESNT WORK!%^$!%$!%
+
+  const [selectedFeTech, setSelectedFeTech] = useState(project.frontendTech);
+
+  const feTechChangeHandler = (event) => {
+    setSelectedFeTech(event.target.value);
+  };
+
+  useEffect(() => {
+    setSelectedFeTech(project.frontendTech);
+  }, [project]);
+
+  const [selectedBeTech, setSelectedBeTech] = useState(project.backendTech);
+
+  const beTechChangeHandler = (event) => {
+    setSelectedBeTech(event.target.value);
+  };
+
+  useEffect(() => {
+    setSelectedBeTech(project.backendTech);
+  }, [project]);
+
+  //   .//.// //   .//.// //   .//.// //   .//.// //   .//.// //   .//.//
+
+  const formEditHandler = (e) => {
+    const projectsData = Object.fromEntries(new FormData(e.target));
+
+    projectService.update(params.projectId, projectsData);
+
+    navigate(`/project/${params.projectId}`);
+  };
   const {
-    value: enteredName,
-    isValid: enteredNameIsValid,
     hasError: nameInputHasError,
     valueChangeHandler: nameChangedHandler,
     inputBlurHandler: nameBlurHandler,
-    reset: resetNameInput,
   } = useInput((value) => value.trim() !== "");
 
   const {
-    value: enteredEmail,
-    isValid: enteredEmailIsValid,
     hasError: emailInputHasError,
     valueChangeHandler: emailChangeHandler,
     inputBlurHandler: emailBlurHandler,
-    reset: resetEmailInput,
   } = useInput((value) =>
     value.trim().match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g)
   );
 
-  const {
-    value: enteredFrondendTech,
-    isValid: feTechInputIsValid,
-    hasError: feTechInputHasError,
-    valueChangeHandler: feTechChangeHandler,
-    inputBlurHandler: feTechBlurHandler,
-  } = useInput((value) => value !== "");
+  const { hasError: feTechInputHasError, inputBlurHandler: feTechBlurHandler } =
+    useInput((value) => value !== "");
+
+  const { hasError: beTechInputHasError, inputBlurHandler: beTechBlurHandler } =
+    useInput((value) => value !== "");
 
   const {
-    value: enteredBackendTech,
-    isValid: beTechInputIsValid,
-    hasError: beTechInputHasError,
-    valueChangeHandler: beTechChangeHandler,
-    inputBlurHandler: beTechBlurHandler,
-  } = useInput((value) => value !== "");
-
-  const {
-    value: enteredLink,
-    isValid: enteredLinkIsValid,
     hasError: linkInputHasError,
     valueChangeHandler: linkChangedHandler,
     inputBlurHandler: linkBlurHandler,
-    reset: resetLinkInput,
   } = useInput((value) => value.trim() !== "");
 
   const {
-    value: enteredPicture,
-    isValid: fileInputIsValid,
     hasError: fileInputHasError,
     valueChangeHandler: fileChangeHandler,
     inputBlurHandler: fileBlurHandler,
-    reset: resetFileInput,
   } = useInput((value) => value !== "");
 
   const {
-    value: enteredDescription,
-    isValid: descriptionInputIsValid,
     hasError: descriptionInputHasError,
     valueChangeHandler: descriptionChangeHandler,
     inputBlurHandler: descriptionBlurHandler,
-    reset: resetDescriptionInput,
   } = useInput((value) => value !== "");
-
-  let formIsValid = false;
-
-  if (
-    enteredNameIsValid &&
-    enteredEmailIsValid &&
-    feTechInputIsValid &&
-    beTechInputIsValid &&
-    enteredLinkIsValid &&
-    fileInputIsValid &&
-    descriptionInputIsValid
-  ) {
-    formIsValid = true;
-  }
-
-  /**
-   * Handles user data after Submit button is clicked and resets the input fields
-   * @param event
-   */
-  const formSubmissionHandler = (event) => {
-    event.preventDefault();
-
-    const data = {
-      name: enteredName,
-      email: enteredEmail,
-      frontendTech: enteredFrondendTech,
-      backendTech: enteredBackendTech,
-      link: enteredLink,
-      picture: enteredPicture,
-      description: enteredDescription,
-    };
-
-    try {
-      projectService.addProject(data, ownerId).then((project) => {
-        navigate("/");
-      });
-    } catch (err) {}
-
-    resetNameInput();
-    resetEmailInput();
-    resetLinkInput();
-    resetFileInput();
-    resetDescriptionInput();
-  };
 
   const nameInputClasses = nameInputHasError
     ? `${styles.form} ${styles.invalid}`
@@ -153,16 +120,17 @@ const CreateProject = (props) => {
 
   return (
     <div className={styles.hero}>
-      <form onSubmit={formSubmissionHandler}>
+      <form onSubmit={formEditHandler}>
         <div className={nameInputClasses}>
           <label htmlFor="name">Project name</label>
           <input
             type="text"
             id="name"
+            name="name"
             placeholder="Project name"
             onChange={nameChangedHandler}
             onBlur={nameBlurHandler}
-            value={enteredName}
+            defaultValue={project.name}
           />
           {nameInputHasError && (
             <p className={styles["error-text"]}>Enter project name.</p>
@@ -173,10 +141,11 @@ const CreateProject = (props) => {
           <input
             type="email"
             id="email"
+            name="email"
             placeholder="someGoodCompany@gmail.com"
             onChange={emailChangeHandler}
             onBlur={emailBlurHandler}
-            value={enteredEmail}
+            defaultValue={project.email}
           />
           {emailInputHasError && (
             <p className={styles["error-text"]}>Enter a valid e-mail.</p>
@@ -186,9 +155,10 @@ const CreateProject = (props) => {
           <label htmlFor="tech-stac-f">Select Frontend technology</label>
           <select
             id="tech-stac-f"
-            name="tech-stac"
+            name="frontendTech"
             onChange={feTechChangeHandler}
             onBlur={feTechBlurHandler}
+            value={selectedFeTech}
           >
             <option value="blank"></option>
             <option value="JavaScript">JavaScript</option>
@@ -208,9 +178,10 @@ const CreateProject = (props) => {
           <label htmlFor="tech-stack-b">Select a Backend technology.</label>
           <select
             id="tech-stack-b"
-            name="tech-stack"
+            name="backendTech"
             onChange={beTechChangeHandler}
             onBlur={beTechBlurHandler}
+            value={selectedBeTech}
           >
             <option value="blank"></option>
             <option value="PHP">PHP</option>
@@ -228,10 +199,11 @@ const CreateProject = (props) => {
           <input
             type="text"
             id="link"
+            name="link"
             placeholder="https://figma.com"
             onChange={linkChangedHandler}
             onBlur={linkBlurHandler}
-            value={enteredLink}
+            defaultValue={project.link}
           />
           {linkInputHasError && (
             <p className={styles["error-text"]}>Enter link.</p>
@@ -245,10 +217,11 @@ const CreateProject = (props) => {
           <input
             type="text"
             id="link-picture"
+            name="picture"
             placeholder="https://someCoolPicture.com"
             onChange={fileChangeHandler}
             onBlur={fileBlurHandler}
-            value={enteredPicture}
+            defaultValue={project.picture}
           />
           {fileInputHasError && (
             <p className={styles["error-text"]}>Enter picture link.</p>
@@ -263,7 +236,7 @@ const CreateProject = (props) => {
             rows="6"
             onChange={descriptionChangeHandler}
             onBlur={descriptionBlurHandler}
-            value={enteredDescription}
+            defaultValue={project.description}
           />
           {descriptionInputHasError && (
             <p className={styles["error-text"]}>Write a description.</p>
@@ -272,11 +245,11 @@ const CreateProject = (props) => {
 
         {/* put module css class */}
         <div className="form-actions">
-          <button disabled={!formIsValid}>Submit</button>
+          <button>Edit</button>
         </div>
       </form>
     </div>
   );
 };
 
-export default CreateProject;
+export default Edit;
