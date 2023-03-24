@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import styles from "./HomeCard.module.css";
+import styles from "./CatalogCard.module.css";
 
-const HomeCard = (props) => {
+const CatalogCard = (props) => {
   return (
     <article className={styles.projects}>
       <article className={styles["project-img-wrapper"]}>
@@ -20,4 +20,4 @@ const HomeCard = (props) => {
   );
 };
 
-export default HomeCard;
+export default CatalogCard;

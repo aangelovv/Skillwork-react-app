@@ -46,7 +46,7 @@ const Details = () => {
     <>
       <article className={styles["project-item"]}>
         <article className={styles["img-project"]}>
-          <img src={project.link} alt="project" />
+          <img src={project.picture} alt="project" />
         </article>
         <p className={styles["input-texts"]}>{project.name}</p>
         <p className={styles["input-texts"]}>{project.email}</p>
