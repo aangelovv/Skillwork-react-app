@@ -43,6 +43,11 @@ const Header = () => {
                 </Link>
               </li>
               <li className={styles.links}>
+                <Link to="/profile" className={styles.link}>
+                  Profile
+                </Link>
+              </li>
+              <li className={styles.links}>
                 <Link to="/logout" className={styles.link}>
                   Logout
                 </Link>

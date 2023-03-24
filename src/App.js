@@ -14,6 +14,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import CreateProject from "./components/CreateProject/CreateProject";
 import Parse from "parse/dist/parse.min.js";
+import Profile from "./components/Profile/Profile";
 
 function NotFound() {
   return <h1>404 Not Found</h1>;
@@ -42,6 +43,7 @@ const App = () => {
           <Route path="/create" element={<CreateProject />} />
           <Route path="/project/:projectId" element={<Details />} />
           <Route path="/edit/:projectId" element={<Edit />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
       </Router>
     </AuthProvider>
