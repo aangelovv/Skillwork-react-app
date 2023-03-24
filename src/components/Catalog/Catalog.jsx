@@ -14,7 +14,7 @@ const Catalog = () => {
     <>
       <article className={styles.background}>
         <img
-          src="https://c4.wallpaperflare.com/wallpaper/111/745/193/reactjs-javascript-programming-programming-language-hd-wallpaper-preview.jpg"
+          src="https://skillwork.co.uk/assets/img/750x750/img2.jpg"
           alt="react-pic"
           className={styles.image}
         />

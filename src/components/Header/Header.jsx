@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styles from "./Header.module.css";
-import logo from "../../assets/logo.png";
 import { useAuthContext } from "../../context/AuthContext";
+import logo from "../../assets/Skillwork.png";
 
 const Header = () => {
   const { user } = useAuthContext();
@@ -10,9 +10,8 @@ const Header = () => {
     <header className={styles.header}>
       <nav className={styles.nav}>
         <li className={styles.links}>
-          <Link className={`${styles.home} ${styles.links}`} to="/">
+          <Link to="/">
             <img src={logo} alt="Skillwork Logo" className={styles.img} />
-            <h1 className={styles.heading}>Skillwork</h1>
           </Link>
         </li>
         <div className={styles["links-wrapper"]}>

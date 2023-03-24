@@ -2,9 +2,10 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   margin-bottom: 0;
   margin-top: 0;
-  background-color: pink;
+  background-color: #ded6de;
 }
 
 .links-wrapper {
@@ -34,7 +35,7 @@
 }
 
 .img {
-  width: 80px;
+  width: 200px;
 }
 
 .heading {
