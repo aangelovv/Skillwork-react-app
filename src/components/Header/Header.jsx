@@ -5,6 +5,7 @@ import logo from "../../assets/Skillwork.png";
 
 const Header = () => {
   const { user } = useAuthContext();
+  console.log(user);
 
   return (
     <header className={styles.header}>
@@ -15,7 +16,12 @@ const Header = () => {
           </Link>
         </li>
         <div className={styles["links-wrapper"]}>
-          {user.email && <li className={styles.links}>Hello, {user.email}</li>}
+          {user.email && (
+            <>
+              <span className={styles.links}>Hello, {user.username}</span>
+              {/* <img src="" alt="user photo" /> */}
+            </>
+          )}
           <li className={styles.links}>
             <Link to="/catalog" className={styles.link}>
               All projects

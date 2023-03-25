@@ -41,3 +41,11 @@
 .heading {
   color: purple;
 }
+
+span {
+  color: rgb(70, 66, 66);
+  font-family: cursive;
+  font-weight: bold;
+  font-size: 22px;
+  margin: 6px 30px 0px 0px !important;
+}
