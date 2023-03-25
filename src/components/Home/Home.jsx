@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import styles from "./Home.module.css";
 import HomeCard from "./HomeCard";
 import OfficeCard from "./OfficeCard";
+import Footer from "../Footer/Footer";
 
 const Home = () => {
   const [projects, setProjects] = useState([]);
@@ -32,6 +33,7 @@ const Home = () => {
       </section>
       <h2 className={styles["offices-heading"]}>Offices Locations</h2>
       <section className={styles.offices}>{<OfficeCard />}</section>
+      <Footer />
     </>
   );
 };

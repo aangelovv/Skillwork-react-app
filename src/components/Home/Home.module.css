@@ -27,11 +27,12 @@
 .offices {
   display: flex;
   justify-content: center;
-  margin: 0px 60px;
+  margin: 0px 0px 200px;
 }
 
 .no-projects,
 .offices-heading {
   text-align: center;
-  margin: 60px 40px;
+  margin: 210px 40px 90px 40px;
+  font-size: 45px;
 }
