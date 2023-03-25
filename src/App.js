@@ -15,6 +15,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import CreateProject from "./components/CreateProject/CreateProject";
 import Parse from "parse/dist/parse.min.js";
 import Profile from "./components/Profile/Profile";
+import Footer from "./components/Footer/Footer";
 
 function NotFound() {
   return <h1>404 Not Found</h1>;
@@ -46,6 +47,7 @@ const App = () => {
           <Route path="/profile" element={<Profile />} />
         </Routes>
       </Router>
+      <Footer />
     </AuthProvider>
   );
 };
