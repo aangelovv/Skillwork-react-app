@@ -22,7 +22,7 @@ const Home = () => {
         />
       </article>
       <h2 className={styles["projects-collection-heading"]}>
-        Projects collection
+        Top Skillwork projects
       </h2>
       <section className={styles["projects-collection"]}>
         {projects.length > 0 ? (

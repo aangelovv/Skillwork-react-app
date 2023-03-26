@@ -152,130 +152,135 @@ const CreateProject = (props) => {
     : `${styles.form} ${styles.last}`;
 
   return (
-    <div className={styles.hero}>
-      <form onSubmit={formSubmissionHandler}>
-        <div className={nameInputClasses}>
-          <label htmlFor="name">Project name</label>
-          <input
-            type="text"
-            id="name"
-            placeholder="Project name"
-            onChange={nameChangedHandler}
-            onBlur={nameBlurHandler}
-            value={enteredName}
-          />
-          {nameInputHasError && (
-            <p className={styles["error-text"]}>Enter project name.</p>
-          )}
-        </div>
-        <div className={emailInputClasses}>
-          <label htmlFor="email">Company e-mail</label>
-          <input
-            type="email"
-            id="email"
-            placeholder="someGoodCompany@gmail.com"
-            onChange={emailChangeHandler}
-            onBlur={emailBlurHandler}
-            value={enteredEmail}
-          />
-          {emailInputHasError && (
-            <p className={styles["error-text"]}>Enter a valid e-mail.</p>
-          )}
-        </div>
-        <div className={feTechInputClasses}>
-          <label htmlFor="tech-stac-f">Select Frontend technology</label>
-          <select
-            id="tech-stac-f"
-            name="tech-stac"
-            onChange={feTechChangeHandler}
-            onBlur={feTechBlurHandler}
-          >
-            <option value="blank"></option>
-            <option value="JavaScript">JavaScript</option>
-            <option value="React">React</option>
-            <option value="Angular">Angular</option>
-            <option value="Vue">Vue</option>
-            <option value="discuss">Discuss it with our team</option>
-          </select>
-          {feTechInputHasError && (
-            <p className={styles["error-text"]}>
-              Select a Frontend technology.
-            </p>
-          )}
-        </div>
+    <>
+      <h1>When ideas become reality!</h1>
+      <div className={styles.hero}>
+        <form onSubmit={formSubmissionHandler}>
+          <div className={nameInputClasses}>
+            <label htmlFor="name">Project name</label>
+            <input
+              type="text"
+              id="name"
+              placeholder="Project name"
+              onChange={nameChangedHandler}
+              onBlur={nameBlurHandler}
+              value={enteredName}
+            />
+            {nameInputHasError && (
+              <p className={styles["error-text"]}>Enter project name.</p>
+            )}
+          </div>
+          <div className={emailInputClasses}>
+            <label htmlFor="email">Company e-mail</label>
+            <input
+              type="email"
+              id="email"
+              placeholder="someGoodCompany@gmail.com"
+              onChange={emailChangeHandler}
+              onBlur={emailBlurHandler}
+              value={enteredEmail}
+            />
+            {emailInputHasError && (
+              <p className={styles["error-text"]}>Enter a valid e-mail.</p>
+            )}
+          </div>
+          <div className={feTechInputClasses}>
+            <label htmlFor="tech-stac-f">Select Frontend technology</label>
+            <select
+              id="tech-stac-f"
+              name="tech-stac"
+              onChange={feTechChangeHandler}
+              onBlur={feTechBlurHandler}
+            >
+              <option value="blank"></option>
+              <option value="JavaScript">JavaScript</option>
+              <option value="React">React</option>
+              <option value="Angular">Angular</option>
+              <option value="Vue">Vue</option>
+              <option value="discuss">Discuss it with our team</option>
+            </select>
+            {feTechInputHasError && (
+              <p className={styles["error-text"]}>
+                Select a Frontend technology.
+              </p>
+            )}
+          </div>
 
-        <div className={beTechInputClasses}>
-          <label htmlFor="tech-stack-b">Select a Backend technology.</label>
-          <select
-            id="tech-stack-b"
-            name="tech-stack"
-            onChange={beTechChangeHandler}
-            onBlur={beTechBlurHandler}
-          >
-            <option value="blank"></option>
-            <option value="PHP">PHP</option>
-            <option value="Java">Java</option>
-            <option value="Python">Python</option>
-            <option value="discuss">Discuss it with our team</option>
-          </select>
-          {beTechInputHasError && (
-            <p className={styles["error-text"]}>Select a Backend technology.</p>
-          )}
-        </div>
+          <div className={beTechInputClasses}>
+            <label htmlFor="tech-stack-b">Select a Backend technology.</label>
+            <select
+              id="tech-stack-b"
+              name="tech-stack"
+              onChange={beTechChangeHandler}
+              onBlur={beTechBlurHandler}
+            >
+              <option value="blank"></option>
+              <option value="PHP">PHP</option>
+              <option value="Java">Java</option>
+              <option value="Python">Python</option>
+              <option value="discuss">Discuss it with our team</option>
+            </select>
+            {beTechInputHasError && (
+              <p className={styles["error-text"]}>
+                Select a Backend technology.
+              </p>
+            )}
+          </div>
 
-        <div className={linkInputClasses}>
-          <label htmlFor="link">Add link towards project design</label>
-          <input
-            type="text"
-            id="link"
-            placeholder="https://figma.com"
-            onChange={linkChangedHandler}
-            onBlur={linkBlurHandler}
-            value={enteredLink}
-          />
-          {linkInputHasError && (
-            <p className={styles["error-text"]}>Enter link.</p>
-          )}
-        </div>
+          <div className={linkInputClasses}>
+            <label htmlFor="link">Add link towards project design</label>
+            <input
+              type="text"
+              id="link"
+              placeholder="https://figma.com"
+              onChange={linkChangedHandler}
+              onBlur={linkBlurHandler}
+              value={enteredLink}
+            />
+            {linkInputHasError && (
+              <p className={styles["error-text"]}>Enter link.</p>
+            )}
+          </div>
 
-        <div className={fileInputClasses}>
-          <label htmlFor="link-picture">
-            Add link towards project cover photo
-          </label>
-          <input
-            type="text"
-            id="link-picture"
-            placeholder="https://someCoolPicture.com"
-            onChange={fileChangeHandler}
-            onBlur={fileBlurHandler}
-            value={enteredPicture}
-          />
-          {fileInputHasError && (
-            <p className={styles["error-text"]}>Enter picture link.</p>
-          )}
-        </div>
-        <div className={descriptionTextareaClasses}>
-          <label htmlFor="description">Tell us more about the project?</label>
-          <textarea
-            id="description"
-            name="description"
-            placeholder="It is a react app project, about other projects suggested to Skillwork "
-            rows="6"
-            onChange={descriptionChangeHandler}
-            onBlur={descriptionBlurHandler}
-            value={enteredDescription}
-          />
-          {descriptionInputHasError && (
-            <p className={styles["error-text"]}>Write a description.</p>
-          )}
-        </div>
+          <div className={fileInputClasses}>
+            <label htmlFor="link-picture">
+              Add link towards project cover photo
+            </label>
+            <input
+              type="text"
+              id="link-picture"
+              placeholder="https://someCoolPicture.com"
+              onChange={fileChangeHandler}
+              onBlur={fileBlurHandler}
+              value={enteredPicture}
+            />
+            {fileInputHasError && (
+              <p className={styles["error-text"]}>Enter picture link.</p>
+            )}
+          </div>
+          <div className={descriptionTextareaClasses}>
+            <label htmlFor="description">Tell us more about the project?</label>
+            <textarea
+              id="description"
+              name="description"
+              placeholder="It is a react app project, about other projects suggested to Skillwork "
+              rows="6"
+              onChange={descriptionChangeHandler}
+              onBlur={descriptionBlurHandler}
+              value={enteredDescription}
+            />
+            {descriptionInputHasError && (
+              <p className={styles["error-text"]}>Write a description.</p>
+            )}
+          </div>
 
-        {/* put module css class */}
-        <div className="form-actions">
-          <button disabled={!formIsValid}>Submit</button>
-        </div>
-      </form>
-    </div>
+          {/* put module css class */}
+          <div className="form-actions">
+            <button disabled={!formIsValid}>Submit</button>
+          </div>
+        </form>
+      </div>
+    </>
   );
 };
 

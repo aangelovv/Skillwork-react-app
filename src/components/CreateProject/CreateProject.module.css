@@ -117,7 +117,7 @@ button:disabled:active {
   position: relative;
 }
 
-.logo h1 {
+.logo {
   font-size: 1.52rem;
   margin-bottom: 2.5rem;
   border-bottom: 2px solid black;
@@ -126,7 +126,7 @@ button:disabled:active {
   color: #3f3c3c;
 }
 
-.logo h1 span {
+.logo span {
   color: #024fa3;
   font-size: 1.8rem;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
@@ -192,4 +192,15 @@ button:disabled:active {
 
 .last {
   margin-bottom: 1.2rem;
+}
+
+h1 {
+  font-family: "Pacifico", cursive;
+  font-size: 4rem;
+  text-align: center;
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  background-color: #d352aa;
+  padding: 20px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
 }
