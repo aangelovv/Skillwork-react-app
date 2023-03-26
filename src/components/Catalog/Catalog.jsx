@@ -2,7 +2,7 @@ import * as projectService from "../../services/projectService";
 import { useEffect, useState } from "react";
 import styles from "./Catalog.module.css";
 import CatalogCard from "./CatalogCard";
-import cover from "../../assets/cover-for-catalog.jpg";
+import projectsCollection from "../../assets/group-of-projects.png";
 
 const Catalog = () => {
   const [projects, setProjects] = useState([]);
@@ -20,14 +20,19 @@ const Catalog = () => {
           className={styles.image}
         />
       </article>
-      <h2 className={styles["projects-collection-heading"]}>
-        Projects collection
-      </h2>
+      <div className={styles["project-collection-wrapper"]}>
+        <h2 className={styles["projects-collection-heading"]}>
+          Projects collection
+        </h2>
+        <div className={styles["project-collection-img"]}>
+          <img src={projectsCollection} alt="projects-collection" />
+        </div>
+      </div>
       <section className={styles["projects-collection"]}>
         {projects.length > 0 ? (
           projects.map((x) => <CatalogCard key={x.id} project={x} />)
         ) : (
-          <h3 className={styles["no-projects"]}>There are no projects.</h3>
+          <h3 className={styles["no-projects"]}>Loading projects...</h3>
         )}
       </section>
     </>
