@@ -14,12 +14,13 @@ body {
 }
 
 .hero {
-  max-width: 39rem;
-  padding: 1rem;
-  padding-left: 4rem;
-  border-radius: 12px;
-  background-color: white;
-  margin: 3rem auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
 }
 
 .form {
@@ -133,9 +134,10 @@ button:disabled:active {
     "Lucida Sans", Arial, sans-serif;
 }
 
-.img-logo {
-  width: 20rem;
-  margin: 1rem 0rem 0.5rem;
+.welcome-logo {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
 }
 
 .best-company-logo {
@@ -192,4 +194,15 @@ button:disabled:active {
 
 .last {
   margin-bottom: 1.2rem;
+}
+
+.img-container {
+  margin-top: 65px;
+}
+
+p {
+  margin-top: -14px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  font-size: 13px;
 }

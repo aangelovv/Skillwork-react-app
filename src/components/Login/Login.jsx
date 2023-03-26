@@ -2,10 +2,13 @@ import useInput from "../../hooks/use-input";
 import styles from "./Login.module.css";
 
 import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { AuthContext } from "../../context/AuthContext";
 import * as authService from "../../services/authService";
+
+import welcome from "../../assets/welcome.png";
+import welcomeHands from "../../assets/welcomeHands.jpg";
 
 /**
  * Job form - component for rendering all form input fields
@@ -72,41 +75,56 @@ const Login = (props) => {
     : styles.form;
 
   return (
-    <div className={styles.hero}>
-      <form onSubmit={formSubmissionHandler}>
-        <div className={emailInputClasses}>
-          <label htmlFor="email">Your E-Mail</label>
-          <input
-            type="email"
-            id="email"
-            placeholder="johnSmith@gmail.com"
-            onChange={emailChangeHandler}
-            onBlur={emailBlurHandler}
-            value={enteredEmail}
-          />
-          {emailInputHasError && (
-            <p className={styles["error-text"]}>Enter a valid e-mail.</p>
-          )}
-        </div>
-        <div className={passwordInputClasses}>
-          <label htmlFor="password">Your Password</label>
-          <input
-            type="password"
-            id="password"
-            placeholder="*************"
-            onChange={passwordChangedHandler}
-            onBlur={passwordBlurHandler}
-            value={enteredPassword}
-          />
-          {passwordInputHasError && (
-            <p className={styles["error-text"]}>Enter your password.</p>
-          )}
-        </div>
-        <div className="form-actions">
-          <button disabled={!formIsValid}>Submit</button>
-        </div>
-      </form>
-    </div>
+    <>
+      <div className={styles["img-container"]}>
+        <img
+          className={styles["welcome-logo"]}
+          src={welcome}
+          alt="welcome logo"
+        />
+      </div>
+      <div className={styles.hero}>
+        <form onSubmit={formSubmissionHandler}>
+          <div className={emailInputClasses}>
+            <label htmlFor="email">Your E-Mail</label>
+            <input
+              type="email"
+              id="email"
+              placeholder="johnSmith@gmail.com"
+              onChange={emailChangeHandler}
+              onBlur={emailBlurHandler}
+              value={enteredEmail}
+            />
+            {emailInputHasError && (
+              <p className={styles["error-text"]}>Enter a valid e-mail.</p>
+            )}
+          </div>
+          <div className={passwordInputClasses}>
+            <label htmlFor="password">Your Password</label>
+            <input
+              type="password"
+              id="password"
+              placeholder="*************"
+              onChange={passwordChangedHandler}
+              onBlur={passwordBlurHandler}
+              value={enteredPassword}
+            />
+            {passwordInputHasError && (
+              <p className={styles["error-text"]}>Enter your password.</p>
+            )}
+          </div>
+          <p>
+            You don't have an account yet ? Don't worry{" "}
+            <Link to="/register" className={styles.link}>
+              register here.
+            </Link>
+          </p>
+          <div className="form-actions">
+            <button disabled={!formIsValid}>Submit</button>
+          </div>
+        </form>
+      </div>
+    </>
   );
 };
 

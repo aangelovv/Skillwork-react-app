@@ -14,12 +14,13 @@ body {
 }
 
 .hero {
-  max-width: 39rem;
-  padding: 1rem;
-  padding-left: 4rem;
-  border-radius: 12px;
-  background-color: white;
-  margin: 3rem auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
 }
 
 .form {
@@ -117,7 +118,7 @@ button:disabled:active {
   position: relative;
 }
 
-.logo h1 {
+.logo {
   font-size: 1.52rem;
   margin-bottom: 2.5rem;
   border-bottom: 2px solid black;
@@ -126,7 +127,7 @@ button:disabled:active {
   color: #3f3c3c;
 }
 
-.logo h1 span {
+.logo span {
   color: #024fa3;
   font-size: 1.8rem;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
@@ -192,4 +193,10 @@ button:disabled:active {
 
 .last {
   margin-bottom: 1.2rem;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 60px;
+  font-size: 45px;
 }

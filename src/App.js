@@ -1,4 +1,7 @@
 // import { Routes, Route } from "react-router-dom";
+import "./App.css";
+import React from "react";
+
 import Header from "./components/Header/Header";
 import Home from "./components/Home/Home";
 import Login from "./components/Login/Login";
@@ -7,14 +10,12 @@ import Catalog from "./components/Catalog/Catalog";
 import Register from "./components/Register/Register";
 import Details from "./components/Details/Details";
 import Edit from "./components/Edit/Edit";
-import "./App.css";
-import { AuthProvider } from "./context/AuthContext";
-
-import React from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import CreateProject from "./components/CreateProject/CreateProject";
-import Parse from "parse/dist/parse.min.js";
 import Profile from "./components/Profile/Profile";
+import CreateProject from "./components/CreateProject/CreateProject";
+
+import { AuthProvider } from "./context/AuthContext";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Parse from "parse/dist/parse.min.js";
 
 function NotFound() {
   return <h1>404 Not Found</h1>;
