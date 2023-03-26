@@ -113,7 +113,7 @@ const Login = (props) => {
               <p className={styles["error-text"]}>Enter your password.</p>
             )}
           </div>
-          <p>
+          <p className={styles["no-account"]}>
             You don't have an account yet ? Don't worry{" "}
             <Link to="/register" className={styles.link}>
               register here.

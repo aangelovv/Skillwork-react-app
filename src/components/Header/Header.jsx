@@ -18,7 +18,7 @@ const Header = () => {
         <div className={styles["links-wrapper"]}>
           {user.email && (
             <>
-              <span className={styles.links}>Hello, {user.username}</span>
+              <span className={styles.links}>Hello, {user.username} :)</span>
               {/* <img src="" alt="user photo" /> */}
             </>
           )}

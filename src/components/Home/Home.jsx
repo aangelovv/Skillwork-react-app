@@ -28,7 +28,7 @@ const Home = () => {
         {projects.length > 0 ? (
           projects.map((x) => <HomeCard key={x.id} project={x} />)
         ) : (
-          <h3 className={styles["no-projects"]}>There are no projects.</h3>
+          <h3 className={styles["no-projects"]}>Loading projects...</h3>
         )}
       </section>
       <h2 className={styles["offices-heading"]}>Offices Locations</h2>

@@ -2,6 +2,7 @@ import * as projectService from "../../services/projectService";
 import { useEffect, useState } from "react";
 import styles from "./Catalog.module.css";
 import CatalogCard from "./CatalogCard";
+import cover from "../../assets/cover-for-catalog.jpg";
 
 const Catalog = () => {
   const [projects, setProjects] = useState([]);
@@ -14,7 +15,7 @@ const Catalog = () => {
     <>
       <article className={styles.background}>
         <img
-          src="https://skillwork.co.uk/assets/img/750x750/img2.jpg"
+          src="https://picjumbo.com/wp-content/uploads/minimalist-home-office-workspace-desk-setup-free-photo.jpg"
           alt="react-pic"
           className={styles.image}
         />

@@ -200,7 +200,7 @@ button:disabled:active {
   margin-top: 65px;
 }
 
-p {
+.no-account {
   margin-top: -14px;
   margin-bottom: 20px;
   font-weight: bold;
