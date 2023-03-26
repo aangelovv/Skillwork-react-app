@@ -20,8 +20,12 @@
 .projects-collection-heading {
   display: flex;
   flex-wrap: wrap;
-  margin: 50px 40px;
+  margin: 0;
   justify-content: center;
+  font-size: 4rem;
+  color: rgb(192, 38, 90);
+  font-family: "Pacifico", cursive;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .offices {
@@ -34,4 +38,17 @@
 .offices-heading {
   text-align: center;
   margin: 60px 40px;
+}
+
+.project-collection-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 20px;
+  padding-top: 40px;
+  border-bottom: 3px solid rgb(192, 38, 90);
+}
+
+.project-collection-img img {
+  width: 90px;
 }

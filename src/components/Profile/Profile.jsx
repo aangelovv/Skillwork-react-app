@@ -3,7 +3,7 @@ import { useEffect, useState, useContext } from "react";
 import styles from "./Profile.module.css";
 import ProfileCard from "./ProfileCard";
 import { AuthContext } from "../../context/AuthContext";
-
+import bulb from "../../assets/bulb.png";
 const Profile = () => {
   const [projects, setProjects] = useState([]);
 
@@ -23,9 +23,12 @@ const Profile = () => {
           className={styles.image}
         />
       </article>
-      <h2 className={styles["projects-collection-heading"]}>
-        Projects collection
-      </h2>
+      <div className={styles["project-collection-wrapper"]}>
+        <h2 className={styles["projects-collection-heading"]}>Your ideas</h2>
+        <div className={styles["project-collection-img"]}>
+          <img src={bulb} alt="bulb" />
+        </div>
+      </div>
       <section className={styles["projects-collection"]}>
         {projects.length > 0 ? (
           projects.map((x) => <ProfileCard key={x.id} project={x} />)
