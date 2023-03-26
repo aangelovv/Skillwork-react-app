@@ -70,9 +70,9 @@ body {
 
 button {
   font-size: 1.2rem;
-  background-color: #024fa3;
+  background-color: #7c5894;
   color: white;
-  border: 1px solid #024fa3;
+  border: 1px solid #7c5894;
   padding: 0.5rem 1.5rem;
   border-radius: 16px;
   cursor: pointer;
@@ -81,8 +81,8 @@ button {
 
 button:hover,
 button:active {
-  background-color: #023974;
-  border-color: #023974;
+  background-color: #583270;
+  border-color: #583270;
 }
 
 button:disabled,
@@ -127,12 +127,12 @@ button:disabled:active {
   color: #3f3c3c;
 }
 
-.logo span {
-  color: #024fa3;
+/* .logo span {
+  color: #583270;
   font-size: 1.8rem;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
-}
+} */
 
 .img-logo {
   width: 20rem;
@@ -195,7 +195,7 @@ button:disabled:active {
   margin-bottom: 1.2rem;
 }
 
-h1 {
+.heading-register {
   text-align: center;
   margin-top: 60px;
   font-size: 45px;

@@ -33,11 +33,11 @@ const Details = () => {
 
   const ownerBtn = (
     <article className={styles["user-btn"]}>
-      <button className={styles.delete} onClick={deleteHandler}>
+      <button className={styles.btn} onClick={deleteHandler}>
         Delete
       </button>
-      <Link to={`/edit/${project.id}`} className={styles.edit}>
-        Edit
+      <Link to={`/edit/${project.id}`}>
+        <button className={styles.btn}>Edit</button>
       </Link>
     </article>
   );

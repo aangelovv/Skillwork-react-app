@@ -173,7 +173,7 @@ const Register = (props) => {
 
   return (
     <>
-      <h1>Register here:</h1>
+      <h2 className={styles["heading-register"]}>Register here:</h2>
       <div className={styles.hero}>
         <form onSubmit={formSubmissionHandler}>
           <div className={nameInputClasses}>

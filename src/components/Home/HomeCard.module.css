@@ -1,9 +1,9 @@
 .projects {
-  width: 335px;
-  height: 420px;
+  width: 346px;
+  height: 440px;
   border: none;
   box-shadow: 0px 0px 10px;
-  border-radius: 15px;
+  border-radius: 20px;
   margin: 20px 20px;
   background-color: white;
 }
@@ -16,17 +16,26 @@
 }
 
 .project-img-wrapper img {
-  width: 79.5%;
-  height: 80%;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
+  width: 82.5%;
+  height: 100%;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom: 3px solid #7c5894;
 }
 
-.text {
-  margin: 0;
-  padding: 20px 0px;
+.project-name {
+  color: rgb(70, 66, 66);
+  font-weight: bold;
+  font-size: 22px;
   text-align: center;
-  margin-top: -20px;
+  margin-top: 25px;
+}
+
+.company-name {
+  color: rgb(70, 66, 66);
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
 }
 
 .project-details {
@@ -37,9 +46,9 @@
 
 .btn {
   padding: 10px 25px;
-  margin: 10px 20px;
+  margin-top: 25px;
   border-radius: 20px;
-  background-color: #583270;
+  background-color: #7c5894;
   color: white;
   text-decoration: none;
   font-weight: bold;

@@ -120,7 +120,9 @@ const Login = (props) => {
             </Link>
           </p>
           <div className="form-actions">
-            <button disabled={!formIsValid}>Submit</button>
+            <button className={styles["button-login"]} disabled={!formIsValid}>
+              Submit
+            </button>
           </div>
         </form>
       </div>

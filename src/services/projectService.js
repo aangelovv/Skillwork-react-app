@@ -9,13 +9,12 @@ Parse.serverURL = PARSE_HOST_URL;
 export async function getAll() {
   // create your Parse Query using the Person Class you've created
   const query = new Parse.Query("project");
+
   // run the query
   const Project = await query.find();
 
-  //add id to the result
+  // add id to the result
   const result = Project.map((x, id) => ({ ...x.attributes, id: x.id }));
-
-  // const filtered = result.filter(x => x.location === 'Varna')
 
   return result;
 }
@@ -68,6 +67,7 @@ export async function addProject(data, ownerId) {
 
   project.set({
     name: data.name,
+    companyName: data.companyName,
     email: data.email,
     frontendTech: data.frontendTech,
     backendTech: data.backendTech,

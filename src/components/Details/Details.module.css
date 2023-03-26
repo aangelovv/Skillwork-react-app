@@ -1,11 +1,11 @@
 .project-item,
 .details {
-  width: 335px;
+  width: 346px;
   border: none;
   box-shadow: 0px 0px 10px;
-  border-radius: 15px;
+  border-radius: 20px;
   margin: 30px auto;
-  background-color: rgb(210, 210, 210);
+  background-color: white;
 }
 
 .img-project {
@@ -16,15 +16,16 @@
 }
 
 .img-project img {
-  width: 80%;
-  height: 80%;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
+  width: 82.5%;
+  height: 100%;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom: 3px solid #7c5894;
 }
 
 .input-texts {
-  margin: 20px 15px;
-  padding: 0px 0px;
+  color: rgb(70, 66, 66);
+  font-size: 18px;
   text-align: center;
 }
 
@@ -35,12 +36,11 @@
   cursor: pointer;
 }
 
-.delete,
-.edit {
+.btn {
   padding: 10px 25px;
   margin: 35px 10px;
   border-radius: 20px;
-  background-color: #583270;
+  background-color: #7c5894;
   color: white;
   text-decoration: none;
   font-weight: bold;
