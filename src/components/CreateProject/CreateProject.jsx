@@ -21,7 +21,14 @@ const CreateProject = (props) => {
     hasError: nameInputHasError,
     valueChangeHandler: nameChangedHandler,
     inputBlurHandler: nameBlurHandler,
-    reset: resetNameInput,
+  } = useInput((value) => value.trim() !== "");
+
+  const {
+    value: enteredCompanyName,
+    isValid: enteredCompanyNameIsValid,
+    hasError: companyNameInputHasError,
+    valueChangeHandler: companyNameChangedHandler,
+    inputBlurHandler: companyNameBlurHandler,
   } = useInput((value) => value.trim() !== "");
 
   const {
@@ -30,7 +37,6 @@ const CreateProject = (props) => {
     hasError: emailInputHasError,
     valueChangeHandler: emailChangeHandler,
     inputBlurHandler: emailBlurHandler,
-    reset: resetEmailInput,
   } = useInput((value) =>
     value.trim().match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g)
   );
@@ -57,7 +63,6 @@ const CreateProject = (props) => {
     hasError: linkInputHasError,
     valueChangeHandler: linkChangedHandler,
     inputBlurHandler: linkBlurHandler,
-    reset: resetLinkInput,
   } = useInput((value) => value.trim() !== "");
 
   const {
@@ -66,7 +71,6 @@ const CreateProject = (props) => {
     hasError: fileInputHasError,
     valueChangeHandler: fileChangeHandler,
     inputBlurHandler: fileBlurHandler,
-    reset: resetFileInput,
   } = useInput((value) => value !== "");
 
   const {
@@ -75,13 +79,13 @@ const CreateProject = (props) => {
     hasError: descriptionInputHasError,
     valueChangeHandler: descriptionChangeHandler,
     inputBlurHandler: descriptionBlurHandler,
-    reset: resetDescriptionInput,
   } = useInput((value) => value !== "");
 
   let formIsValid = false;
 
   if (
     enteredNameIsValid &&
+    enteredCompanyNameIsValid &&
     enteredEmailIsValid &&
     feTechInputIsValid &&
     beTechInputIsValid &&
@@ -101,6 +105,7 @@ const CreateProject = (props) => {
 
     const data = {
       name: enteredName,
+      companyName: enteredCompanyName,
       email: enteredEmail,
       frontendTech: enteredFrondendTech,
       backendTech: enteredBackendTech,
@@ -114,15 +119,13 @@ const CreateProject = (props) => {
         navigate("/");
       });
     } catch (err) {}
-
-    resetNameInput();
-    resetEmailInput();
-    resetLinkInput();
-    resetFileInput();
-    resetDescriptionInput();
   };
 
   const nameInputClasses = nameInputHasError
+    ? `${styles.form} ${styles.invalid}`
+    : styles.form;
+
+  const companyNameInputClasses = companyNameInputHasError
     ? `${styles.form} ${styles.invalid}`
     : styles.form;
 
@@ -153,7 +156,7 @@ const CreateProject = (props) => {
 
   return (
     <>
-      <h1>When ideas become reality!</h1>
+      <h1 className={styles["heading-create"]}>When ideas become reality!</h1>
       <div className={styles.hero}>
         <form onSubmit={formSubmissionHandler}>
           <div className={nameInputClasses}>
@@ -170,6 +173,22 @@ const CreateProject = (props) => {
               <p className={styles["error-text"]}>Enter project name.</p>
             )}
           </div>
+
+          <div className={companyNameInputClasses}>
+            <label htmlFor="name">Company name</label>
+            <input
+              type="text"
+              id="company-name"
+              placeholder="Company name"
+              onChange={companyNameChangedHandler}
+              onBlur={companyNameBlurHandler}
+              value={enteredCompanyName}
+            />
+            {companyNameInputHasError && (
+              <p className={styles["error-text"]}>Enter company name.</p>
+            )}
+          </div>
+
           <div className={emailInputClasses}>
             <label htmlFor="email">Company e-mail</label>
             <input
