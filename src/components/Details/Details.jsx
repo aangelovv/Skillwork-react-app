@@ -48,12 +48,29 @@ const Details = () => {
         <article className={styles["img-project"]}>
           <img src={project.picture} alt="project" />
         </article>
-        <p className={styles["input-texts"]}>{project.name}</p>
-        <p className={styles["input-texts"]}>{project.email}</p>
-        <p className={styles["input-texts"]}>{project.backendTech}</p>
-        <p className={styles["input-texts"]}>{project.description}</p>
+        <article className={styles["projects-info"]}>
+          <p className={styles["input-texts"]}>
+            Project name: <br />
+            <strong> {project.name} </strong>
+          </p>
+          <p className={styles["input-texts"]}>
+            Project owning company: <br />{" "}
+            <strong> {project.companyName} </strong>
+          </p>
+          <p className={styles["input-texts"]}>
+            Frontend technology: <br />{" "}
+            <strong> {project.frontendTech} </strong>
+          </p>
+          <p className={styles["input-texts"]}>
+            Backend technology: <br /> <strong> {project.backendTech} </strong>
+          </p>
+          <p className={styles["input-texts"]}>
+            Project description technology: <br />{" "}
+            <strong> {project.description} </strong>
+          </p>
 
-        {projectOwner ? ownerBtn : ""}
+          {projectOwner ? ownerBtn : ""}
+        </article>
       </article>
 
       <Modal
