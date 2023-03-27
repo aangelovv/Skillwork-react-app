@@ -23,12 +23,13 @@
   margin: 100px 0px;
   justify-content: center;
   text-align: center;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Pacifico", cursive;
   font-size: 4rem;
   font-weight: bold;
   color: #fff;
   background-color: #6a6a6a;
   padding: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
 
@@ -41,6 +42,10 @@
 .no-projects,
 .offices-heading {
   text-align: center;
-  margin: 210px 40px 90px 40px;
+  margin: 210px 0px 90px 0px;
   font-size: 45px;
+  background-color: #202020;
+  color: aliceblue;
+  padding-bottom: 8px;
+  font-family: cursive;
 }

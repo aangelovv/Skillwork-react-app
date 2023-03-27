@@ -3,7 +3,7 @@ import varnaPic from "../../assets/varna.jpg";
 import londonPic from "../../assets/london.jpg";
 import sofiaPic from "../../assets/sofia.jpg";
 
-const OfficeCard = (props) => {
+const OfficeCard = () => {
   return (
     <>
       <article className={styles.office}>
