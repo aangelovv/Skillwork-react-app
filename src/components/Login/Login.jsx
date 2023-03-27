@@ -75,7 +75,7 @@ const Login = (props) => {
     : styles.form;
 
   return (
-    <>
+    <div className={styles["login-wraper"]}>
       <div className={styles["img-container"]}>
         <img
           className={styles["welcome-logo"]}
@@ -126,7 +126,7 @@ const Login = (props) => {
           </div>
         </form>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -14,13 +14,7 @@ body {
 }
 
 .hero {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  right: auto;
-  bottom: auto;
-  margin-right: -50%;
-  transform: translate(-50%, -50%);
+  margin-bottom: 100px;
 }
 
 .form {
@@ -113,55 +107,6 @@ button:disabled:active {
   color: #ae0d0d;
 }
 
-.logo {
-  margin-top: 1.5rem;
-  position: relative;
-}
-
-.logo {
-  font-size: 1.52rem;
-  margin-bottom: 2.5rem;
-  border-bottom: 2px solid black;
-  display: inline-block;
-  padding: 5px;
-  color: #3f3c3c;
-}
-
-/* .logo span {
-  color: #583270;
-  font-size: 1.8rem;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
-} */
-
-.img-logo {
-  width: 20rem;
-  margin: 1rem 0rem 0.5rem;
-}
-
-.best-company-logo {
-  position: absolute;
-  width: 10rem;
-  top: -6%;
-  right: 0%;
-  transform: rotate(24deg);
-}
-
-.hat {
-  position: absolute;
-  width: 6rem;
-  top: -7%;
-  left: -3%;
-}
-
-.logo p {
-  font-size: 1.3rem;
-  width: 74%;
-  margin-bottom: 1rem;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 25px;
-}
-
 .radio-button {
   margin-bottom: 2rem;
   width: 25rem;
@@ -199,4 +144,22 @@ button:disabled:active {
   text-align: center;
   margin-top: 60px;
   font-size: 45px;
+}
+
+.register-logo {
+  display: block;
+  margin: 0 auto;
+  width: 650px;
+  margin-top: -110px;
+  margin-bottom: -65px;
+}
+
+/* .img-container {
+  margin-top: 65px;
+} */
+
+.register-wraper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

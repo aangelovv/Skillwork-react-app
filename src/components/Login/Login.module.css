@@ -14,13 +14,14 @@ body {
 }
 
 .hero {
-  position: absolute;
+  /* position: absolute;
   top: 50%;
   left: 50%;
   right: auto;
   bottom: auto;
   margin-right: -50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); */
+  margin-top: 45px;
 }
 
 .form {
@@ -57,11 +58,11 @@ body {
   background-color: #f8f8f8;
 }
 
-.control-group {
+/* .control-group {
   display: flex;
   column-gap: 1rem;
   flex-wrap: wrap;
-}
+} */
 
 .control-group .form {
   min-width: 15rem;
@@ -113,47 +114,12 @@ button:disabled:active {
   color: #ae0d0d;
 }
 
-.logo {
-  margin-top: 1.5rem;
-  position: relative;
-}
-
-.logo h1 {
-  font-size: 1.52rem;
-  margin-bottom: 2.5rem;
-  border-bottom: 2px solid black;
-  display: inline-block;
-  padding: 5px;
-  color: #3f3c3c;
-}
-
 /* .logo h1 span {
   color: #583270;
   font-size: 1.8rem;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
 } */
-
-.welcome-logo {
-  display: block;
-  margin: 0 auto;
-  max-width: 100%;
-}
-
-.best-company-logo {
-  position: absolute;
-  width: 10rem;
-  top: -6%;
-  right: 0%;
-  transform: rotate(24deg);
-}
-
-.hat {
-  position: absolute;
-  width: 6rem;
-  top: -7%;
-  left: -3%;
-}
 
 .logo p {
   font-size: 1.3rem;
@@ -181,28 +147,34 @@ button:disabled:active {
   margin-bottom: 1rem;
 }
 
-.wraper {
+/* .wraper {
   display: flex;
   justify-content: space-between;
-}
+} */
 
-.wraper div {
+/* .wraper div {
   display: flex;
   align-items: center;
   gap: 5px;
-}
+} */
 
 .last {
   margin-bottom: 1.2rem;
 }
 
-.img-container {
+/* .img-container {
   margin-top: 65px;
-}
+} */
 
 .no-account {
   margin-top: -14px;
   margin-bottom: 20px;
   font-weight: bold;
   font-size: 13px;
+}
+
+.login-wraper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

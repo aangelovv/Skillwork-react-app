@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import * as authService from "../../services/authService";
 
+import registerPic from "../../assets/register-here.png";
+
 /**
  * Job form - component for rendering all form input fields
  * @returns {JSX}
@@ -172,8 +174,15 @@ const Register = (props) => {
     : `${styles.form} ${styles.last}`;
 
   return (
-    <>
-      <h2 className={styles["heading-register"]}>Register here:</h2>
+    <div className={styles["register-wraper"]}>
+      <div className={styles["img-container"]}>
+        <img
+          className={styles["register-logo"]}
+          src={registerPic}
+          alt="register logo"
+        />
+      </div>
+
       <div className={styles.hero}>
         <form onSubmit={formSubmissionHandler}>
           <div className={nameInputClasses}>
@@ -326,7 +335,7 @@ const Register = (props) => {
           </div>
         </form>
       </div>
-    </>
+    </div>
   );
 };
 
