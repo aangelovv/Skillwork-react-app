@@ -14,14 +14,8 @@ body {
 }
 
 .hero {
-  /* position: absolute;
-  top: 50%;
-  left: 50%;
-  right: auto;
-  bottom: auto;
-  margin-right: -50%;
-  transform: translate(-50%, -50%); */
   margin-top: 45px;
+  margin-bottom: 65px;
 }
 
 .form {

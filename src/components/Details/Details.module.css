@@ -67,6 +67,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #ded6de;
+  border-radius: 20px;
+  padding: 15px;
 }
 
 .projects-info {
@@ -77,4 +80,13 @@ strong {
   font-size: 21px;
   font-family: cursive;
   color: rgb(53, 53, 53);
+}
+
+.modal-alignments button {
+  margin-right: 10px;
+}
+
+.modal-alignments h2 {
+  margin-top: 0;
+  text-align: center;
 }

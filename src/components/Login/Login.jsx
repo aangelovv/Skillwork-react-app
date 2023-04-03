@@ -8,7 +8,6 @@ import { AuthContext } from "../../context/AuthContext";
 import * as authService from "../../services/authService";
 
 import welcome from "../../assets/welcome.png";
-import welcomeHands from "../../assets/welcomeHands.jpg";
 
 /**
  * Job form - component for rendering all form input fields
