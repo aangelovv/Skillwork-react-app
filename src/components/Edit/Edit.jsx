@@ -17,11 +17,6 @@ const Edit = () => {
       .then((result) => setProject(result));
   }, [params.projectId]);
 
-  //   .//.// //   .//.// //   .//.// //   .//.// //   .//.// //   .//.//
-
-  //   If you are reading this, i wanted to use defaultValue and set it to select input like this
-  //   deafultValue={project.frontendTech} so it detects the option and set its value, BUT IT DOESNT WORK!%^$!%$!%
-
   const [selectedFeTech, setSelectedFeTech] = useState(project.frontendTech);
 
   const feTechChangeHandler = (event) => {
@@ -41,8 +36,6 @@ const Edit = () => {
   useEffect(() => {
     setSelectedBeTech(project.backendTech);
   }, [project]);
-
-  //   .//.// //   .//.// //   .//.// //   .//.// //   .//.// //   .//.//
 
   const formEditHandler = (e) => {
     const projectsData = Object.fromEntries(new FormData(e.target));

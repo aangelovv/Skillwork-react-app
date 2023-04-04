@@ -115,7 +115,7 @@ const CreateProject = (props) => {
     };
 
     try {
-      projectService.addProject(data, ownerId).then((project) => {
+      projectService.addProject(data, ownerId).then(() => {
         navigate("/");
       });
     } catch (err) {}
