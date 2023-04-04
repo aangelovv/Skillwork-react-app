@@ -5,7 +5,6 @@ import logo from "../../assets/Skillwork.png";
 
 const Header = () => {
   const { user } = useAuthContext();
-  console.log(user);
 
   return (
     <header className={styles.header}>

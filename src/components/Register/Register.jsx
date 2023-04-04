@@ -108,7 +108,6 @@ const Register = (props) => {
    */
   const formSubmissionHandler = (event) => {
     event.preventDefault();
-    console.log("stawa li neshto ? ");
 
     const data = {
       username: enteredName,
