@@ -14,7 +14,7 @@ export async function getAll() {
   const Project = await query.find();
 
   // add id to the result
-  const result = Project.map((x, id) => ({ ...x.attributes, id: x.id }));
+  const result = Project.map((x) => ({ ...x.attributes, id: x.id }));
 
   return result;
 }
@@ -26,7 +26,7 @@ export async function getLatest() {
   const Project = await query.find();
 
   //add id to the result
-  const result = Project.map((x, id) => ({ ...x.attributes, id: x.id }));
+  const result = Project.map((x) => ({ ...x.attributes, id: x.id }));
 
   return result;
 }
@@ -51,7 +51,7 @@ export async function getByOwner(ownerId) {
     // run the query
     const Project = await query.find();
 
-    const result = Project.map((x, id) => ({ ...x.attributes, id: x.id }));
+    const result = Project.map((x) => ({ ...x.attributes, id: x.id }));
 
     const filtered = result.filter((x) => x.ownerId === ownerId);
 

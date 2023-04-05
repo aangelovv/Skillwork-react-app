@@ -40,21 +40,21 @@ function Footer() {
       </div>
       <div className={styles["social-icons"]}>
         <a
-          href="https://www.facebook.com/yourpage"
+          href="https://www.facebook.com/Skillworksoftware"
           target="_blank"
           rel="noopener noreferrer"
         >
           <FaFacebook />
         </a>
         <a
-          href="https://github.com/yourusername"
+          href="https://github.com/Skillwork-Software/circle"
           target="_blank"
           rel="noopener noreferrer"
         >
           <FaGithub />
         </a>
         <a
-          href="https://www.linkedin.com/in/yourprofile"
+          href="https://www.linkedin.com/company/skillworkconsulting/"
           target="_blank"
           rel="noopener noreferrer"
         >
